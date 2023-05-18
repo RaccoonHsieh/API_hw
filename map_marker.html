@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Google Maps API 叢集標記範例</title>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwSMXG4fekT3LQm6ml9y4QKz1U7x-BWQs&callback=initMap"></script>
+</head>
+<body>
+  <div id="map" style="width: 800px; height: 600px;"></div>
+
+  <script>
+    function initMap() {
+        // The location of Uluru
+        const cityhall = { lat:25.051491931654756, lng: 121.56509707547268 };
+
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 18,
+            center: cityhall,
+        });
+
+        const img = "img/placeholder.png";
+            for( let i = 0; i < locations.length; i++){
+                const marker = new google.maps.Marker({
+                    position: locations[i],
+                    map: map,
+                    title: "地點" + (i + 1),
+                    icon: img
+                });
+            
+                marker.addListener("click", () => {
+                    infowindow.open({
+                    anchor: marker,
+                    map,
+                    });
+                });
+            }
+    }
+
+    const locations = [
+        { lat: 25.051491931654756, lng: 121.56509707547268 },
+        { lat: 25.04315958104316, lng: 121.52478978063003 },
+        { lat: 25.046453, lng: 121.515570 },
+        { lat: 25.046973, lng: 121.513635 },
+        { lat: 25.047964, lng: 121.513700 },
+        { lat: 25.048859, lng: 121.515784 },
+        { lat: 25.048933, lng: 121.518045 },
+        { lat: 25.049507, lng: 121.520085 },
+        { lat: 25.049366, lng: 121.522050 }
+    ];
+
+    
+
+    // 載入地圖
+    window.initMap = initMap;
+  </script>
+</body>
+</html>
